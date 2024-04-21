@@ -27,4 +27,6 @@ public class Card {
     private String cvv;
 
     private String pin;
+    private String cardHolder;
+    private String validThru;
 }
