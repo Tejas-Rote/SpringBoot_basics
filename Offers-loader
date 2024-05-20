@@ -2,6 +2,7 @@ package com.example.offerservice.config;
 
 import com.example.offerservice.models.Offer;
 import com.example.offerservice.models.OfferType;
+import com.example.offerservice.models.PlanType;
 import com.example.offerservice.repositories.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,25 +17,32 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        offerRepository.save(new Offer("Summer Plan 1", "10% off on summer plan 1", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER10", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 2", "15% off on summer plan 2", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER15", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 3", "20% off on summer plan 3", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER20", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 4", "25% off on summer plan 4", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER25", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 5", "30% off on summer plan 5", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER30", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 6", "35% off on summer plan 6", 35.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER35", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 7", "40% off on summer plan 7", 40.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER40", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 8", "45% off on summer plan 8", 45.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER45", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 9", "50% off on summer plan 9", 50.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER50", OfferType.PLAN));
-        offerRepository.save(new Offer("Summer Plan 10", "55% off on summer plan 10", 55.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMER55", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 1", "10% off on winter plan 1", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER10", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 2", "15% off on winter plan 2", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER15", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 3", "20% off on winter plan 3", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER20", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 4", "25% off on winter plan 4", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER25", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 5", "30% off on winter plan 5", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER30", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 6", "35% off on winter plan 6", 35.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER35", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 7", "40% off on winter plan 7", 40.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER40", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 8", "45% off on winter plan 8", 45.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER45", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 9", "50% off on winter plan 9", 50.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER50", OfferType.PLAN));
-        offerRepository.save(new Offer("Winter Plan 10", "55% off on winter plan 10", 55.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTER55", OfferType.PLAN));
+        // Basic Plan Offers
+        offerRepository.save(new Offer(null, "Basic Plan - Save 10%", "Get 10% off on the Basic Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC10OFF", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Basic Plan - Save 15%", "Get 15% off on the Basic Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC15OFF", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Basic Plan - Save 20%", "Get 20% off on the Basic Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC20OFF", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Basic Plan - Early Bird", "Get 25% off on the Basic Plan if you sign up early", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "EARLYBIRD25", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Basic Plan - Flash Sale", "Limited time offer: 30% off on the Basic Plan", 30.0, LocalDate.now(), LocalDate.now().plusWeeks(1), true, "FLASH30", OfferType.PLAN, PlanType.BASIC));
+
+        // Standard Plan Offers
+        offerRepository.save(new Offer(null, "Standard Plan - Save 10%", "Get 10% off on the Standard Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD10OFF", OfferType.PLAN, PlanType.STANDARD));
+        offerRepository.save(new Offer(null, "Standard Plan - Save 15%", "Get 15% off on the Standard Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD15OFF", OfferType.PLAN, PlanType.STANDARD));
+        offerRepository.save(new Offer(null, "Standard Plan - Save 20%", "Get 20% off on the Standard Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD20OFF", OfferType.PLAN, PlanType.STANDARD));
+        offerRepository.save(new Offer(null, "Standard Plan - Weekend Special", "Sign up during the weekend and get 25% off on the Standard Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WEEKEND25", OfferType.PLAN, PlanType.STANDARD));
+        offerRepository.save(new Offer(null, "Standard Plan - Holiday Special", "Holiday special: 30% off on the Standard Plan", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "HOLIDAY30", OfferType.PLAN, PlanType.STANDARD));
+
+        // Premium Plan Offers
+        offerRepository.save(new Offer(null, "Premium Plan - Save 10%", "Get 10% off on the Premium Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM10OFF", OfferType.PLAN, PlanType.PREMIUM));
+        offerRepository.save(new Offer(null, "Premium Plan - Save 15%", "Get 15% off on the Premium Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM15OFF", OfferType.PLAN, PlanType.PREMIUM));
+        offerRepository.save(new Offer(null, "Premium Plan - Save 20%", "Get 20% off on the Premium Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM20OFF", OfferType.PLAN, PlanType.PREMIUM));
+        offerRepository.save(new Offer(null, "Premium Plan - New Year Special", "New Year special: 25% off on the Premium Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "NEWYEAR25", OfferType.PLAN, PlanType.PREMIUM));
+        offerRepository.save(new Offer(null, "Premium Plan - Black Friday", "Black Friday deal: 30% off on the Premium Plan", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BLACKFRIDAY30", OfferType.PLAN, PlanType.PREMIUM));
+
+        // Mixed Offers
+        offerRepository.save(new Offer(null, "Basic Plan - Summer Special", "Summer special: 15% off on the Basic Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERBASIC15", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Standard Plan - Summer Special", "Summer special: 20% off on the Standard Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERSTANDARD20", OfferType.PLAN, PlanType.STANDARD));
+        offerRepository.save(new Offer(null, "Premium Plan - Summer Special", "Summer special: 25% off on the Premium Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERPREMIUM25", OfferType.PLAN, PlanType.PREMIUM));
+        offerRepository.save(new Offer(null, "Basic Plan - Winter Special", "Winter special: 10% off on the Basic Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTERBASIC10", OfferType.PLAN, PlanType.BASIC));
+        offerRepository.save(new Offer(null, "Standard Plan - Winter Special", "Winter special: 15% off on the Standard Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTERSTANDARD15", OfferType.PLAN, PlanType.STANDARD));
     }
 }
