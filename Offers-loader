@@ -3,7 +3,7 @@ package com.example.offerservice.config;
 import com.example.offerservice.models.Offer;
 import com.example.offerservice.models.OfferType;
 import com.example.offerservice.models.PlanType;
-import com.example.offerservice.repositories.OfferRepository;
+import com.example.offerservice.services.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,36 +13,241 @@ import java.time.LocalDate;
 @Component
 public class DataLoader implements CommandLineRunner {
     @Autowired
-    private OfferRepository offerRepository;
+    private OfferService offerService;
 
     @Override
     public void run(String... args) throws Exception {
+        Offer offer;
+
         // Basic Plan Offers
-        offerRepository.save(new Offer(null, "Basic Plan - Save 10%", "Get 10% off on the Basic Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC10OFF", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Basic Plan - Save 15%", "Get 15% off on the Basic Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC15OFF", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Basic Plan - Save 20%", "Get 20% off on the Basic Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BASIC20OFF", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Basic Plan - Early Bird", "Get 25% off on the Basic Plan if you sign up early", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "EARLYBIRD25", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Basic Plan - Flash Sale", "Limited time offer: 30% off on the Basic Plan", 30.0, LocalDate.now(), LocalDate.now().plusWeeks(1), true, "FLASH30", OfferType.PLAN, PlanType.BASIC));
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Save 10%");
+        offer.setDescription("Get 10% off on the Basic Plan");
+        offer.setDiscountPercentage(10.0);
+        offer.setStartDate(LocalDate.now().minusDays(10));
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("BASIC10OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Save 15%");
+        offer.setDescription("Get 15% off on the Basic Plan");
+        offer.setDiscountPercentage(15.0);
+        offer.setStartDate(LocalDate.now().minusDays(20));
+        offer.setEndDate(LocalDate.now().plusMonths(2));
+        offer.setIsActive(true);
+        offer.setCode("BASIC15OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Save 20%");
+        offer.setDescription("Get 20% off on the Basic Plan");
+        offer.setDiscountPercentage(20.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusWeeks(3));
+        offer.setIsActive(true);
+        offer.setCode("BASIC20OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Early Bird");
+        offer.setDescription("Get 25% off on the Basic Plan if you sign up early");
+        offer.setDiscountPercentage(25.0);
+        offer.setStartDate(LocalDate.now().plusDays(5));
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("EARLYBIRD25");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Flash Sale");
+        offer.setDescription("Limited time offer: 30% off on the Basic Plan");
+        offer.setDiscountPercentage(30.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusWeeks(1));
+        offer.setIsActive(true);
+        offer.setCode("FLASH30");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
 
         // Standard Plan Offers
-        offerRepository.save(new Offer(null, "Standard Plan - Save 10%", "Get 10% off on the Standard Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD10OFF", OfferType.PLAN, PlanType.STANDARD));
-        offerRepository.save(new Offer(null, "Standard Plan - Save 15%", "Get 15% off on the Standard Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD15OFF", OfferType.PLAN, PlanType.STANDARD));
-        offerRepository.save(new Offer(null, "Standard Plan - Save 20%", "Get 20% off on the Standard Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "STANDARD20OFF", OfferType.PLAN, PlanType.STANDARD));
-        offerRepository.save(new Offer(null, "Standard Plan - Weekend Special", "Sign up during the weekend and get 25% off on the Standard Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WEEKEND25", OfferType.PLAN, PlanType.STANDARD));
-        offerRepository.save(new Offer(null, "Standard Plan - Holiday Special", "Holiday special: 30% off on the Standard Plan", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "HOLIDAY30", OfferType.PLAN, PlanType.STANDARD));
+        offer = new Offer();
+        offer.setTitle("Standard Plan - Save 10%");
+        offer.setDescription("Get 10% off on the Standard Plan");
+        offer.setDiscountPercentage(10.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("STANDARD10OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.STANDARD);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Standard Plan - Save 15%");
+        offer.setDescription("Get 15% off on the Standard Plan");
+        offer.setDiscountPercentage(15.0);
+        offer.setStartDate(LocalDate.now().plusDays(10));
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("STANDARD15OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.STANDARD);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Standard Plan - Save 20%");
+        offer.setDescription("Get 20% off on the Standard Plan");
+        offer.setDiscountPercentage(20.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusWeeks(3));
+        offer.setIsActive(true);
+        offer.setCode("STANDARD20OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.STANDARD);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Standard Plan - Weekend Special");
+        offer.setDescription("Sign up during the weekend and get 25% off on the Standard Plan");
+        offer.setDiscountPercentage(25.0);
+        offer.setStartDate(LocalDate.now().plusDays(3));
+        offer.setEndDate(LocalDate.now().plusMonths(2));
+        offer.setIsActive(true);
+        offer.setCode("WEEKEND25");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.STANDARD);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Standard Plan - Holiday Special");
+        offer.setDescription("Holiday special: 30% off on the Standard Plan");
+        offer.setDiscountPercentage(30.0);
+        offer.setStartDate(LocalDate.now().minusDays(5));
+        offer.setEndDate(LocalDate.now().plusWeeks(2));
+        offer.setIsActive(true);
+        offer.setCode("HOLIDAY30");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.STANDARD);
+        offerService.createOffer(offer);
 
         // Premium Plan Offers
-        offerRepository.save(new Offer(null, "Premium Plan - Save 10%", "Get 10% off on the Premium Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM10OFF", OfferType.PLAN, PlanType.PREMIUM));
-        offerRepository.save(new Offer(null, "Premium Plan - Save 15%", "Get 15% off on the Premium Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM15OFF", OfferType.PLAN, PlanType.PREMIUM));
-        offerRepository.save(new Offer(null, "Premium Plan - Save 20%", "Get 20% off on the Premium Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "PREMIUM20OFF", OfferType.PLAN, PlanType.PREMIUM));
-        offerRepository.save(new Offer(null, "Premium Plan - New Year Special", "New Year special: 25% off on the Premium Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "NEWYEAR25", OfferType.PLAN, PlanType.PREMIUM));
-        offerRepository.save(new Offer(null, "Premium Plan - Black Friday", "Black Friday deal: 30% off on the Premium Plan", 30.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "BLACKFRIDAY30", OfferType.PLAN, PlanType.PREMIUM));
+        offer = new Offer();
+        offer.setTitle("Premium Plan - Save 10%");
+        offer.setDescription("Get 10% off on the Premium Plan");
+        offer.setDiscountPercentage(10.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("PREMIUM10OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.PREMIUM);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Premium Plan - Save 15%");
+        offer.setDescription("Get 15% off on the Premium Plan");
+        offer.setDiscountPercentage(15.0);
+        offer.setStartDate(LocalDate.now().plusDays(15));
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("PREMIUM15OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.PREMIUM);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Premium Plan - Save 20%");
+        offer.setDescription("Get 20% off on the Premium Plan");
+        offer.setDiscountPercentage(20.0);
+        offer.setStartDate(LocalDate.now());
+        offer.setEndDate(LocalDate.now().plusWeeks(4));
+        offer.setIsActive(true);
+        offer.setCode("PREMIUM20OFF");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.PREMIUM);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Premium Plan - New Year Special");
+        offer.setDescription("New Year special: 25% off on the Premium Plan");
+        offer.setDiscountPercentage(25.0);
+        offer.setStartDate(LocalDate.now().plusDays(1));
+        offer.setEndDate(LocalDate.now().plusMonths(1));
+        offer.setIsActive(true);
+        offer.setCode("NEWYEAR25");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.PREMIUM);
+        offerService.createOffer(offer);
+
+        offer = new Offer();
+        offer.setTitle("Premium Plan - Black Friday");
+        offer.setDescription("Black Friday deal: 30% off on the Premium Plan");
+        offer.setDiscountPercentage(30.0);
+        offer.setStartDate(LocalDate.now().minusDays(10));
+        offer.setEndDate(LocalDate.now().plusWeeks(1));
+        offer.setIsActive(true);
+        offer.setCode("BLACKFRIDAY30");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.PREMIUM);
+        offerService.createOffer(offer);
 
         // Mixed Offers
-        offerRepository.save(new Offer(null, "Basic Plan - Summer Special", "Summer special: 15% off on the Basic Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERBASIC15", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Standard Plan - Summer Special", "Summer special: 20% off on the Standard Plan", 20.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERSTANDARD20", OfferType.PLAN, PlanType.STANDARD));
-        offerRepository.save(new Offer(null, "Premium Plan - Summer Special", "Summer special: 25% off on the Premium Plan", 25.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "SUMMERPREMIUM25", OfferType.PLAN, PlanType.PREMIUM));
-        offerRepository.save(new Offer(null, "Basic Plan - Winter Special", "Winter special: 10% off on the Basic Plan", 10.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTERBASIC10", OfferType.PLAN, PlanType.BASIC));
-        offerRepository.save(new Offer(null, "Standard Plan - Winter Special", "Winter special: 15% off on the Standard Plan", 15.0, LocalDate.now(), LocalDate.now().plusMonths(1), true, "WINTERSTANDARD15", OfferType.PLAN, PlanType.STANDARD));
-    }
+        offer = new Offer();
+        offer.setTitle("Basic Plan - Summer Special");
+        offer.setDescription("Summer special: 15% off on the Basic Plan");
+        offer.setDiscountPercentage(15.0);
+        offer.setStartDate(LocalDate.now().minusDays(5));
+        offer.setEndDate(LocalDate.now().plusWeeks(2));
+        offer.setIsActive(true);
+        offer.setCode("SUMMERBASIC15");
+        offer.setType(OfferType.PLAN);
+        offer.setPlanType(PlanType.BASIC);
+        offerService.createOffer(offer);
+
+            offer = new Offer();
+    offer.setTitle("Premium Plan - Summer Special");
+    offer.setDescription("Summer special: 25% off on the Premium Plan");
+    offer.setDiscountPercentage(25.0);
+    offer.setStartDate(LocalDate.now());
+    offer.setEndDate(LocalDate.now().plusWeeks(3));
+    offer.setIsActive(true);
+    offer.setCode("SUMMERPREMIUM25");
+    offer.setType(OfferType.PLAN);
+    offer.setPlanType(PlanType.PREMIUM);
+    offerService.createOffer(offer);
+
+    offer = new Offer();
+    offer.setTitle("Basic Plan - Winter Special");
+    offer.setDescription("Winter special: 10% off on the Basic Plan");
+    offer.setDiscountPercentage(10.0);
+    offer.setStartDate(LocalDate.now().minusDays(7));
+    offer.setEndDate(LocalDate.now().plusWeeks(1));
+    offer.setIsActive(true);
+    offer.setCode("WINTERBASIC10");
+    offer.setType(OfferType.PLAN);
+    offer.setPlanType(PlanType.BASIC);
+    offerService.createOffer(offer);
+
+    offer = new Offer();
+    offer.setTitle("Standard Plan - Winter Special");
+    offer.setDescription("Winter special: 15% off on the Standard Plan");
+    offer.setDiscountPercentage(15.0);
+    offer.setStartDate(LocalDate.now());
+    offer.setEndDate(LocalDate.now().plusMonths(1));
+    offer.setIsActive(true);
+    offer.setCode("WINTERSTANDARD15");
+    offer.setType(OfferType.PLAN);
+    offer.setPlanType(PlanType.STANDARD);
+    offerService.createOffer(offer);
 }
